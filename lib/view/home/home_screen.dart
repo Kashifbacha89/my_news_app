@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:my_news_app/models/categories_news_model.dart';
 import 'package:my_news_app/models/news_channel_headlines_model.dart';
 import 'package:my_news_app/view/category/categories_screen.dart';
+import 'package:my_news_app/view/home/widgets/home_app_bar_widget.dart';
 import 'package:my_news_app/view_model/news_view_model.dart';
 
 
@@ -29,76 +30,9 @@ class _HomePageState extends State<HomePage> {
     final width = MediaQuery.of(context).size.width * 1;
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (_)=>const CategoriesScreen()));
-          },
-          child: const Icon(Icons.type_specimen_sharp),
-        ),
-        title: const Text("News"),
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        actions: [
-          PopupMenuButton<FilterList>(
-            initialValue: selectedItem,
-            onSelected: (FilterList item){
-              if(FilterList.bbcNews.name == item.name){
-                name = "bbc-news";
-              }
-              if(FilterList.aryNews.name == item.name){
-                name = "ary-news";
-              }
-              if(FilterList.alJazeera.name == item.name){
-                name = "al-jazeera-english";
-              }
-              if(FilterList.cnn.name == item.name){
-                name = "cnn";
-              }
-              if(FilterList.independent.name == item.name){
-                name = "independent";
-              }
-              if(FilterList.reuters.name == item.name){
-                name = "reuters";
-              }
-              if(FilterList.reuters.name == item.name){
-                name = "nbc-news";
-              }
-              setState(() {
-                selectedItem = item;
-              });
-            },
-            itemBuilder: (context) => <PopupMenuEntry<FilterList>> [
-              const PopupMenuItem<FilterList>(
-                  value: FilterList.bbcNews,
-                  child: Text("BBC News")
-              ),
-              const PopupMenuItem<FilterList>(
-                  value: FilterList.aryNews,
-                  child: Text("ARY News")
-              ),
-              const PopupMenuItem<FilterList>(
-                  value: FilterList.alJazeera,
-                  child: Text("Al-Jazeera")
-              ),
-              const PopupMenuItem<FilterList>(
-                  value: FilterList.cnn,
-                  child: Text("CNN")
-              ),
-              const PopupMenuItem<FilterList>(
-                  value: FilterList.independent,
-                  child: Text("Independent")
-              ),
-              const PopupMenuItem<FilterList>(
-                  value: FilterList.reuters,
-                  child: Text("reuters")
-              ),
-              const PopupMenuItem<FilterList>(
-                value: FilterList.National_Geographic,
-                  child: Text('National_Geographic'))
-            ],
-          ),
-        ],
+      appBar: PreferredSize(
+        preferredSize: const Size(0, 59),
+        child: HomeAppBarWidget(),
       ),
       body: ListView(
         children: [
