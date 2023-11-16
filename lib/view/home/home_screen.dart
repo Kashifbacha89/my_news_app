@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:my_news_app/models/categories_news_model.dart';
 import 'package:my_news_app/models/news_channel_headlines_model.dart';
 import 'package:my_news_app/view/category/categories_screen.dart';
+import 'package:my_news_app/view/home/home_detailed/news_detailed_screen.dart';
 import 'package:my_news_app/view_model/news_view_model.dart';
 
 
@@ -17,7 +18,7 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-enum FilterList {bbcNews,aryNews,independent,reuters,cnn,alJazeera,National_Geographic}
+enum FilterList {bbcNews,aryNews,independent,reuters,cnn,alJazeera,}
 
 class _HomePageState extends State<HomePage> {
   final newsViewModelApi = NewsViewModel();
@@ -96,9 +97,7 @@ class _HomePageState extends State<HomePage> {
                     value: FilterList.reuters,
                     child: Text("reuters")
                 ),
-                const PopupMenuItem<FilterList>(
-                    value: FilterList.National_Geographic,
-                    child: Text('National_Geographic'))
+
               ],
             ),
           ],
@@ -124,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                           DateTime dateTime = DateTime.parse(snapshot.data!.articles![index].publishedAt.toString());
                           return InkWell(
                             onTap: (){
-                              /*Navigator.push(context, MaterialPageRoute(builder: (context) => ChannelDetailPage(
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleDetailsScreen(
                                 id: snapshot.data!.articles![index].source!.id,
                                 newsName: snapshot.data!.articles![index].source!.name,
                                 title: snapshot.data!.articles![index].title,
@@ -133,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                                 author: snapshot.data!.articles![index].author,
                                 content: snapshot.data!.articles![index].content,
                                 description: snapshot.data!.articles![index].description,
-                              )));*/
+                              )));
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 10),
@@ -242,8 +241,8 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context,index){
                         DateTime dateTime = DateTime.parse(snapshot.data!.articles![index].publishedAt.toString());
                         return InkWell(
-                          /* onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailPage(
+                           onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleDetailsScreen(
                               id: snapshot.data!.articles![index].source!.id,
                               newsName: snapshot.data!.articles![index].source!.name,
                               title: snapshot.data!.articles![index].title,
@@ -253,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                               content: snapshot.data!.articles![index].content,
                               description: snapshot.data!.articles![index].description,
                             )));
-                          },*/
+                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
                             child: Row(
